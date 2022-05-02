@@ -9,7 +9,9 @@ Download the latest [Scylla Monitoring release](https://monitoring.docs.scylladb
 ### **Automated**
 1 - Copy the provided `docker_cmd` script to the root of your Scylla Monitoring package
 
-2 - Run it to get a full-blown working Prometheus set-up
+2 - Create the relevant `prometheus/scylla_servers.yml` & `prometheus/scylla_manager_servers.yml` files
+
+3 - Run it to get a full-blown working Prometheus set-up
 
 ### **Manual**
 
