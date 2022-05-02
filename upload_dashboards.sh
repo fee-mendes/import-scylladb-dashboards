@@ -28,6 +28,8 @@ PROMETHEUS_ADDRESS="localhost:9090"
 
 # Do not change anything below this line.
 
+./generate-dashboards.sh -F -v ${SCYLLA_VERSION}
+
 if [ "${GRAFANA_CREATE_DS}" == "true" ]; then
    echo "Creating ${PROMETHEUS_DS_NAME} datasource"
    curl -XPOST -i http://admin:$GRAFANA_ADMIN_PASSWORD@$GRAFANA_HOST:$GRAFANA_PORT/api/datasources \
