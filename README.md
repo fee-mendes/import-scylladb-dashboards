@@ -11,9 +11,13 @@ This repo has the following structure:
 ## Walkthrough
 
 1 - Start Prometheus and Grafana using the provided examples (or adapt them to your needs), each folder has a `docker_cmd` bash one-liner to simplify testing the set-up
+
 2 - Copy `upload_dashboards.sh` to the root of your Scylla Monitoring Stack directory
+
 3 - Review and edit (as needed) the `upload_dashboards.sh` script.
+
 4 - Run `upload_dashboards.sh`
+
 5 - Profit.
 
 ## FAQ
