@@ -27,6 +27,20 @@ GRAFANA_PORT=3000
 PROMETHEUS_ADDRESS="localhost:9090"
 
 # Do not change anything below this line.
+echo "Checking for python3 and pyyaml"
+python3 -c 'import yaml' 
+
+if [ "$?" != "0" ]; then
+	echo "Couldn't find python3 and/or pyyaml."
+	echo "exit 1"
+fi
+
+SED_CMD="sed"
+
+if [ "$(uname)" == "Darwin" ]; then
+	SED_CMD="gsed"
+fi
+
 
 ./generate-dashboards.sh -F -v ${SCYLLA_VERSION}
 
@@ -46,7 +60,7 @@ if [ -z "${PROMETHEUS_DS_NAME}" ]; then
    echo "Skipping renaming datasource as PROMETHEUS_DS_NAME is unset"
 else
    echo "Renaming Prometheus datasource to ${PROMETHEUS_DS_NAME}"
-   find ${OUTPUT_DIR} -type f -exec sed -i "s/\"datasource\": \"prometheus\"/\"datasource\": \"${PROMETHEUS_DS_NAME}\"/g" "{}" \;
+   find ${OUTPUT_DIR} -type f -exec ${SED_CMD} -i "s/\"datasource\": \"prometheus\"/\"datasource\": \"${PROMETHEUS_DS_NAME}\"/g" "{}" \;
 fi
 
 if [ ! -z "${GRAFANA_CONTAINER_NAME}" ]; then

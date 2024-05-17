@@ -1,8 +1,8 @@
 #!/bin/bash
 
-docker run --network=host --rm --name prom -dit -p 9090:9090 -v $(pwd)/prometheus/prom_rules:/etc/prometheus/prom_rules \
+docker run --rm --name prom -dit -p 9090:9090 -v $(pwd)/prometheus/prom_rules:/etc/prometheus/prom_rules \
  -v $(pwd)/prometheus/prometheus.yml.template:/etc/prometheus/prometheus.yml \
- -v $(pwd)/prometheus/scylla_servers.yml:/etc/scylla.d/prometheus/scylla_servers.yml \
- -v $(pwd)/prometheus/scylla_servers.yml:/etc/scylla.d/prometheus/node_exporter_servers.yml \
- -v $(pwd)/prometheus/scylla_manager_servers.yml:/etc/scylla.d/prometheus/scylla_manager_servers.yml \
+ -v $(pwd)/prometheus/scylla_servers.yml:/etc/scylla.d/prometheus/targets/scylla_servers.yml \
+ -v $(pwd)/prometheus/scylla_servers.yml:/etc/scylla.d/prometheus/targets/node_exporter_servers.yml \
+ -v $(pwd)/prometheus/scylla_manager_servers.yml:/etc/scylla.d/prometheus/targets/scylla_manager_servers.yml \
 prom/prometheus --config.file=/etc/prometheus/prometheus.yml 
